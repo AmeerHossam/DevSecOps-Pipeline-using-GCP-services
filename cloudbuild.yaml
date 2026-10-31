@@ -1,3 +1,5 @@
 steps:
   - name: 'ubuntu'
     args: ['echo','Hello ! This is our first build in GCP']
+options:
+  logging: CLOUD_LOGGING_ONLY
