@@ -1,4 +1,3 @@
 steps:
-  - name: : 'ubuntu'
+  - name: 'ubuntu'
     args: ['echo','Hello ! This is our first build in GCP']
-    
