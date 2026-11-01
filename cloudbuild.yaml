@@ -1,8 +1,20 @@
 steps:
-  #Execute SonarCloud Scan
-  - name: maven:3-openjdk-18-slim
-    entrypoint: mvn
-    args: ['verify', 'org.sonarsource.scanner.maven:sonar-maven-plugin:sonar','-Dsonar.host.url=https://sonarcloud.io','-Dsonar.organization=MyCompany','-Dsonar.projectKey=DevSecOps-Pipeline-using-GCP-services','-Dsonar.token=${_SONAR_TOKEN}']
+  # Execute SonarCloud Scan with Git pre-installed
+  - name: 'maven:3-openjdk-18-slim'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        apt-get update && apt-get install -y git
+        mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+          -e -X \
+          -Dsonar.host.url=https://sonarcloud.io \
+          -Dsonar.organization=MyCompany \
+          -Dsonar.projectKey=DevSecOps-Pipeline-using-GCP-services \
+          -Dsonar.token=${_SONAR_TOKEN}
+
 options:
   logging: CLOUD_LOGGING_ONLY
-  
+
+substitutions:
+  _SONAR_TOKEN: '' 
