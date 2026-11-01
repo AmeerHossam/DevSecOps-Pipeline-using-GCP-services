@@ -1,0 +1,4 @@
+sonar.host.url=https://sonarcloud.io
+sonar.organization=MyCompany
+sonar.projectKey=DevSecOps-Pipeline-using-GCP-services
+sonar.login=042fd10c1c9ec90497b0cd9d887a6f13d608445b

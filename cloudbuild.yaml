@@ -12,6 +12,17 @@ steps:
           -Dsonar.organization=ameerhossam \
           -Dsonar.projectKey=DevSecOps-Pipeline-using-GCP-services \
           -Dsonar.token=${_SONAR_TOKEN}
+  - name: 'ubuntu'
+    entrypoint: bash
+    args: 
+        - '-c'
+        - |-
+          apt-get update
+          apt-get -y install maven 
+          SNYK_TOKEN=${_SNYK_TOKEN}
+          export SNYK_TOKEN
+          mvn snyk:test -fn 
+    id: Snyk SCA
 
 options:
   logging: CLOUD_LOGGING_ONLY
